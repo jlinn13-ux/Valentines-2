@@ -1,106 +1,72 @@
-<!-- TEST CHANGE TODAY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <title>Be My Valentine 💘</title>
 
-  <body {
-    margin: 0;
-    height: 100vh;
-    background: #f7f5f2; /* paper */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Libre Baskerville', serif;
-    color: #1e1e1e;
-  }
-  
-  h1 {
-    font-family: 'Playfair Display SC', serif;
-    font-size: 42px;
-    margin-bottom: 24px;
-    letter-spacing: 0.5px;
-  }
-  
-  p {
-    font-size: 18px;
-    line-height: 1.7;
-    max-width: 520px;
-  }
-  >
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+  <style>
     body {
       margin: 0;
       height: 100vh;
+      background: #f7f5f2;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ffd6e8, #ffe9c6);
-      font-family: 'Arial', sans-serif;
+      justify-content: center;
+      font-family: 'Libre Baskerville', serif;
+      color: #1e1e1e;
       text-align: center;
     }
 
     .card {
-      background: white;
-      padding: 40px;
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      width: 320px;
+      background: #ffffff;
+      padding: 48px;
+      border-radius: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      max-width: 520px;
     }
 
     h1 {
-      color: #ff4d6d;
+      font-family: 'Playfair Display SC', serif;
+      font-size: 44px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
     }
 
-    button {button {
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    button {
       font-family: 'Libre Baskerville', serif;
+      padding: 14px 36px;
+      font-size: 15px;
+      border-radius: 999px;
       border: none;
       cursor: pointer;
-      transition: all 0.25s ease;
-    }
-    
-    .yes {
       background: #1e1e1e;
-      color: #fff;
-      padding: 18px 48px;
-      font-size: 20px;
-      border-radius: 40px;
-    }
-    
-    .yes:hover {
-      transform: scale(1.05);
-    }
-    
-    .no {
-      background: transparent;
-      color: #1e1e1e;
-      font-size: 14px;
-      position: absolute;
-    }
-    
-      margin-top: 15px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 20px;
-      background: #ff4d6d;
       color: white;
-      font-size: 14px;
-      cursor: pointer;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
   </style>
 </head>
 
 <body>
-
   <div class="card">
-    <h1>Hi XYZ 💌</h1>
+    <h1>Hi Handsome 💌</h1>
     <p>Open me for a surprise 👀</p>
     <button onclick="alert('We go live soon 😏')">Open</button>
   </div>
-
 </body>
 </html>
