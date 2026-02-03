@@ -2,10 +2,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <title>Be My Valentine 💘</title>
 
-  <style>
+  <body {
+    margin: 0;
+    height: 100vh;
+    background: #f7f5f2; /* paper */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Libre Baskerville', serif;
+    color: #1e1e1e;
+  }
+  
+  h1 {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 42px;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+  >
     body {
       margin: 0;
       height: 100vh;
@@ -29,7 +56,32 @@
       color: #ff4d6d;
     }
 
-    button {
+    button {button {
+      font-family: 'Libre Baskerville', serif;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    
+    .yes {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 18px 48px;
+      font-size: 20px;
+      border-radius: 40px;
+    }
+    
+    .yes:hover {
+      transform: scale(1.05);
+    }
+    
+    .no {
+      background: transparent;
+      color: #1e1e1e;
+      font-size: 14px;
+      position: absolute;
+    }
+    
       margin-top: 15px;
       padding: 12px 20px;
       border: none;
