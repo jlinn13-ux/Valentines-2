@@ -1,253 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Be My Valentine 💘</title>
+<meta charset="UTF-8" />
+<title>Be My Valentine 💘</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+/* ---------- GLOBAL ---------- */
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #f7f5f2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Libre Baskerville', serif;
-      color: #1e1e1e;
-    }
+body {
+  margin: 0;
+  height: 100vh;
+  background: url("images/bg-texture.jpg") center/cover no-repeat;
+  font-family: 'Libre Baskerville', serif;
+  color: #1e1e1e;
+}
 
-    /* Screens */
-    .screen {
-      display: none;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-    }
+.screen {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
 
-    .screen.active {
-      display: flex;
-    }
+.screen.active {
+  display: flex;
+}
 
-    /* Card */
-    .card {
-      background: white;
-      padding: 60px;
-      border-radius: 40px;
-      width: 720px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-      position: relative;
-    }
+.card {
+  background: white;
+  width: 900px;
+  padding: 70px;
+  border-radius: 40px;
+  text-align: center;
+  position: relative;
+}
 
-    /* Typography */
-    .script {
-      font-family: 'Allura', cursive;
-      color: #8c1d18;
-    }
+/* ---------- TYPOGRAPHY ---------- */
+.script {
+  font-family: 'Allura', cursive;
+  color: #8b1e1e;
+}
 
-    h1 {
-      font-size: 50px;
-      margin-bottom: 24px;
-    }
+h1.script {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
 
-    .question {
-      font-size: 28px;
-      font-weight: 700; /* ✅ bold */
-      margin-top: 30px;
-    }
+.question {
+  font-size: 28px;
+  font-weight: bold;
+}
 
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin: 0;
-    }
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
 
-    /* Buttons */
-    .btn {
-      border: none;
-      cursor: pointer;
-      border-radius: 40px;
-      padding: 18px 56px;
-      font-family: 'Libre Baskerville', serif;
-      transition: all 0.3s ease;
-    }
+/* ---------- BUTTONS ---------- */
+button {
+  border: none;
+  cursor: pointer;
+  font-family: 'Libre Baskerville', serif;
+}
 
-    .btn-primary {
-      background: #1e1e1e;
-      color: white;
-      font-size: 18px;
-    }
+.primary {
+  background: #1e1e1e;
+  color: white;
+  padding: 18px 56px;
+  border-radius: 50px;
+  font-size: 16px;
+}
 
-    .btn-primary:hover {
-      transform: scale(1.05);
-    }
+.pulse {
+  animation: pulse 1.8s infinite;
+}
 
-    /* Pulsing animation */
-    .pulse {
-      animation: pulse 1.6s infinite;
-    }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-      100% { transform: scale(1); }
-    }
+/* ---------- PAGE 2 LAYOUT ---------- */
+.split {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
 
-    /* Page 2 buttons */
-    .actions {
-      margin-top: 50px;
-      display: flex;
-      gap: 60px;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
+.left {
+  position: relative;
+}
 
-    .yes {
-      font-size: 20px;
-    }
+.polaroid {
+  width: 260px;
+  padding: 12px;
+  background: white;
+  transform: rotate(-4deg);
+}
 
-    .no {
-      background: transparent;
-      border: none;          /* ✅ remove square */
-      outline: none;         /* ✅ remove focus outline */
-      box-shadow: none;      /* ✅ extra safety */
-      font-size: 16px;
-      cursor: pointer;
-      position: relative;
-      padding: 0;
-    }
+.polaroid img {
+  width: 100%;
+}
 
-    .no:focus {
-      outline: none;
-    }
+.star {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 70px;
+}
 
-    /* Page 3 animation */
-    .pop {
-      animation: pop 0.6s ease-out forwards;
-    }
+.right {
+  text-align: center;
+}
 
-    @keyframes pop {
-      0% {
-        transform: scale(0.6);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+/* ---------- YES / NO ---------- */
+.actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
 
-    /* Confetti */
-    .confetti {
-      position: fixed;
-      top: -50px;
-      width: 24px;
-      height: 24px;
-      background-image: url("images/heart-confetti.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: fall 3s linear forwards;
-      pointer-events: none;
-    }
+.no {
+  background: none;
+  font-size: 16px;
+  position: relative;
+  transition: transform 0.6s ease;
+}
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-  </style>
+/* ---------- PAGE 3 ---------- */
+.pop {
+  animation: pop 0.6s ease forwards;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---------- CONFETTI ---------- */
+.confetti {
+  position: fixed;
+  top: -10%;
+  width: 30px;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(120vh) rotate(360deg);
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- PAGE 1 -->
-  <div class="screen active" id="page1">
-    <div class="card">
-      <h1 class="script">Hi Handsome</h1>
-      <button class="btn btn-primary pulse" onclick="goToPage(2)">
-        Open me for a surprise
-      </button>
-    </div>
+<!-- PAGE 1 -->
+<div class="screen active" id="page1">
+  <div class="card">
+    <h1 class="script">Hi Handsome</h1>
+    <button class="primary pulse" onclick="goToPage(2)">
+      Open me for a surprise
+    </button>
   </div>
+</div>
 
-  <!-- PAGE 2 -->
-  <div class="screen" id="page2">
-    <div class="card">
-      <h1 class="script">For our 3rd Valentine</h1>
-
-      <p>
-        I thought I’d finally ask you out<br>
-        (in a better way than you, obviously).
-      </p>
-
-      <div class="script question">
-        Will you be my Valentine?
+<!-- PAGE 2 -->
+<div class="screen" id="page2">
+  <div class="card">
+    <div class="split">
+      <div class="left">
+        <div class="polaroid">
+          <img src="images/couple-photo.jpg" alt="Us">
+        </div>
+        <img src="images/star.png" class="star">
       </div>
 
-      <div class="actions">
-        <button class="btn btn-primary yes" onclick="yesClicked()">Yes</button>
-        <button class="no" id="noBtn">No</button>
+      <div class="right">
+        <h1 class="script">For our 3rd Valentine</h1>
+        <p>
+          I thought I’d finally ask you out<br>
+          (in a better way than you, obviously).
+        </p>
+        <p class="script question">Will you be my Valentine?</p>
+
+        <div class="actions">
+          <button class="primary" onclick="yesClicked()">Yes</button>
+          <button class="no" id="noBtn">No</button>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- PAGE 3 -->
-  <div class="screen" id="page3">
-    <div class="card pop">
-      <h1 class="script">Phew!</h1>
-      <p>
-        Knew you’d say yes.<br>
-        (As if NO was ever an option)
-      </p>
-    </div>
+<!-- PAGE 3 -->
+<div class="screen" id="page3">
+  <div class="card">
+    <h1 class="script pop">Phew!</h1>
+    <p>
+      Knew you’d say yes.<br>
+      (As if NO was ever an option)
+    </p>
   </div>
+</div>
 
-  <script>
-    function goToPage(page) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById('page' + page).classList.add('active');
-    }
+<script>
+function goToPage(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('page' + n).classList.add('active');
+}
 
-    /* No button smooth dodge */
-    const noBtn = document.getElementById('noBtn');
-    noBtn.addEventListener('mouseenter', () => {
-      const x = Math.random() * 140 - 70;
-      const y = Math.random() * 60 - 30;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseenter', () => {
+  const x = Math.random() * 120 - 60;
+  const y = Math.random() * 80 - 40;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
 
-    /* Yes click */
-    function yesClicked() {
-      goToPage(3);
-      launchConfetti();
-    }
+function yesClicked() {
+  goToPage(3);
+  launchConfetti();
+}
 
-    /* Confetti */
-    function launchConfetti() {
-      for (let i = 0; i < 18; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.animationDelay = Math.random() * 0.5 + 's';
-        document.body.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 3000);
-      }
-    }
-  </script>
+function launchConfetti() {
+  for (let i = 0; i < 14; i++) {
+    const c = document.createElement('img');
+    c.src = "images/heart-confetti.png";
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = 2 + Math.random() * 2 + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+</script>
 
 </body>
 </html>
-
