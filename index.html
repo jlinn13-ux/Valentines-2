@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* ---------- GLOBAL ---------- */
 * {
   box-sizing: border-box;
 }
@@ -18,7 +17,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: url("images/bg-texture.jpg") center/cover no-repeat;
+  background: url("images/bg-texture.jpg") repeat;
   font-family: 'Libre Baskerville', serif;
   color: #1e1e1e;
 }
@@ -26,60 +25,59 @@ body {
 .screen {
   display: none;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
 .screen.active {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card {
-  background: white;
-  width: 900px;
-  padding: 70px;
-  border-radius: 40px;
-  text-align: center;
+/* ---------- PAGE 1 ---------- */
+
+.page1-container {
   position: relative;
+  width: 720px;
+  height: 520px;
 }
 
-/* ---------- TYPOGRAPHY ---------- */
-.script {
+.scallop {
+  position: absolute;
+  inset: 0;
+  background: url("images/scallopped-frame.png") no-repeat center / contain;
+}
+
+.page1-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page1-content img.bow {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.page1-content h1 {
   font-family: 'Allura', cursive;
-  color: #8b1e1e;
+  font-size: 56px;
+  color: #9b1c1c;
+  margin: 10px 0 30px;
 }
 
-h1.script {
-  font-size: 50px;
-  margin-bottom: 30px;
-}
-
-.question {
-  font-size: 28px;
-  font-weight: bold;
-}
-
-p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* ---------- BUTTONS ---------- */
-button {
+.cta {
+  background: white;
+  color: #9b1c1c;
   border: none;
+  padding: 18px 52px;
+  border-radius: 40px;
+  font-size: 14px;
+  letter-spacing: 1px;
   cursor: pointer;
-  font-family: 'Libre Baskerville', serif;
-}
-
-.primary {
-  background: #1e1e1e;
-  color: white;
-  padding: 18px 56px;
-  border-radius: 50px;
-  font-size: 16px;
-}
-
-.pulse {
   animation: pulse 1.8s infinite;
 }
 
@@ -89,76 +87,125 @@ button {
   100% { transform: scale(1); }
 }
 
-/* ---------- PAGE 2 LAYOUT ---------- */
-.split {
-  display: flex;
-  gap: 60px;
+/* ---------- PAGE 2 ---------- */
+
+.page2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  width: 1200px;
   align-items: center;
 }
 
-.left {
+.left-stack {
   position: relative;
 }
 
-.polaroid {
-  width: 260px;
-  padding: 12px;
-  background: white;
-  transform: rotate(-4deg);
-}
-
-.polaroid img {
-  width: 100%;
-}
-
-.star {
+.left-stack img {
   position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 70px;
 }
 
-.right {
+.left-stack img.paper {
+  width: 380px;
+}
+
+.left-stack img.polaroid {
+  width: 320px;
+  transform: rotate(-5deg);
+  top: 40px;
+  left: 40px;
+}
+
+.left-stack img.photo {
+  width: 260px;
+  top: 80px;
+  left: 70px;
+  transform: rotate(-5deg);
+}
+
+.left-stack img.star {
+  width: 70px;
+  bottom: -20px;
+  right: 0;
+}
+
+.center-text {
   text-align: center;
 }
 
-/* ---------- YES / NO ---------- */
+.center-text h2 {
+  font-family: 'Allura', cursive;
+  font-size: 50px;
+  color: #9b1c1c;
+  margin-bottom: 20px;
+}
+
+.center-text p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.center-text .question {
+  font-family: 'Allura', cursive;
+  font-size: 28px;
+  font-weight: bold;
+  color: #9b1c1c;
+  margin: 24px 0;
+}
+
 .actions {
-  margin-top: 40px;
   display: flex;
-  gap: 40px;
+  gap: 30px;
   justify-content: center;
-  align-items: center;
+}
+
+.actions button {
+  padding: 14px 42px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.yes {
+  background: white;
 }
 
 .no {
-  background: none;
-  font-size: 16px;
+  background: transparent;
   position: relative;
-  transition: transform 0.6s ease;
 }
 
 /* ---------- PAGE 3 ---------- */
-.pop {
-  animation: pop 0.6s ease forwards;
+
+.page3 {
+  text-align: center;
 }
 
-@keyframes pop {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+.page3 h1 {
+  font-family: 'Allura', cursive;
+  font-size: 70px;
+  color: #9b1c1c;
+}
+
+.page3 p {
+  font-size: 16px;
 }
 
 /* ---------- CONFETTI ---------- */
+
 .confetti {
   position: fixed;
-  top: -10%;
-  width: 30px;
-  animation: fall 3s linear forwards;
+  bottom: -80px;
+  width: 40px;
+  animation: rise linear forwards;
+  pointer-events: none;
 }
 
-@keyframes fall {
+@keyframes rise {
   to {
-    transform: translateY(120vh) rotate(360deg);
+    transform: translateY(-110vh);
+    opacity: 0;
   }
 }
 </style>
@@ -168,46 +215,49 @@ button {
 
 <!-- PAGE 1 -->
 <div class="screen active" id="page1">
-  <div class="card">
-    <h1 class="script">Hi Handsome</h1>
-    <button class="primary pulse" onclick="goToPage(2)">
-      Open me for a surprise
-    </button>
+  <div class="page1-container">
+    <div class="scallop"></div>
+    <div class="page1-content">
+      <img src="images/bow-illustration.png" class="bow">
+      <h1>Hi Handsome</h1>
+      <button class="cta" onclick="goToPage(2)">OPEN ME FOR A SURPRISE!!</button>
+    </div>
   </div>
 </div>
 
 <!-- PAGE 2 -->
 <div class="screen" id="page2">
-  <div class="card">
-    <div class="split">
-      <div class="left">
-        <div class="polaroid">
-          <img src="images/couple-photo.jpg" alt="Us">
-        </div>
-        <img src="images/star.png" class="star">
-      </div>
+  <div class="page2">
+    <div class="left-stack">
+      <img src="images/paper-cut-kisses.png" class="paper">
+      <img src="images/polaroid-frame.jpg" class="polaroid">
+      <img src="images/our-image.jpeg" class="photo">
+      <img src="images/red-star.png" class="star">
+    </div>
 
-      <div class="right">
-        <h1 class="script">For our 3rd Valentine</h1>
-        <p>
-          I thought I’d finally ask you out<br>
-          (in a better way than you, obviously).
-        </p>
-        <p class="script question">Will you be my Valentine?</p>
-
-        <div class="actions">
-          <button class="primary" onclick="yesClicked()">Yes</button>
-          <button class="no" id="noBtn">No</button>
-        </div>
+    <div class="center-text">
+      <h2>For our 3rd Valentine</h2>
+      <p>
+        I thought I’d finally ask you out<br>
+        (in a better way than you, obviously).
+      </p>
+      <div class="question">Will you be my Valentine?</div>
+      <div class="actions">
+        <button class="yes" onclick="yesClick()">YES</button>
+        <button class="no" id="noBtn">NO</button>
       </div>
+    </div>
+
+    <div>
+      <img src="images/hearts-hugging.png" width="260">
     </div>
   </div>
 </div>
 
 <!-- PAGE 3 -->
 <div class="screen" id="page3">
-  <div class="card">
-    <h1 class="script pop">Phew!</h1>
+  <div class="page3">
+    <h1>Phew!</h1>
     <p>
       Knew you’d say yes.<br>
       (As if NO was ever an option)
@@ -228,20 +278,16 @@ noBtn.addEventListener('mouseenter', () => {
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
 });
 
-function yesClicked() {
+function yesClick() {
   goToPage(3);
-  launchConfetti();
-}
-
-function launchConfetti() {
-  for (let i = 0; i < 14; i++) {
-    const c = document.createElement('img');
+  for (let i = 0; i < 22; i++) {
+    const c = document.createElement("img");
     c.src = "images/heart-confetti.png";
     c.className = "confetti";
     c.style.left = Math.random() * 100 + "vw";
-    c.style.animationDuration = 2 + Math.random() * 2 + "s";
+    c.style.animationDuration = 3 + Math.random() * 2 + "s";
     document.body.appendChild(c);
-    setTimeout(() => c.remove(), 4000);
+    setTimeout(() => c.remove(), 5000);
   }
 }
 </script>
