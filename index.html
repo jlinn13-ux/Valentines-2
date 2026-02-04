@@ -16,9 +16,10 @@ body {
   height: 100vh;
   background: url("images/bg-texture.jpg") center/cover no-repeat;
   font-family: 'Libre Baskerville', serif;
+  overflow: hidden;
 }
 
-/* ---------- SCREEN SYSTEM ---------- */
+/* SCREENS */
 .screen {
   display: none;
   width: 100vw;
@@ -31,7 +32,7 @@ body {
   justify-content: center;
 }
 
-/* ---------- PAGE 1 ---------- */
+/* PAGE 1 */
 .frame {
   width: 650px;
   height: 450px;
@@ -42,15 +43,8 @@ body {
   justify-content: center;
 }
 
-.bow {
-  width: 120px;
-  margin-bottom: 10px;
-}
-
-.title-img {
-  width: 300px;
-  margin-bottom: 30px;
-}
+.bow { width: 120px; margin-bottom: 10px; }
+.title-img { width: 300px; margin-bottom: 30px; }
 
 .open-btn {
   background: white;
@@ -58,52 +52,35 @@ body {
   padding: 14px 46px;
   border-radius: 40px;
   cursor: pointer;
+  animation: pulse 1.6s infinite;
 }
 
-/* ---------- PAGE 2 ---------- */
+@keyframes pulse {
+  50% { transform: scale(1.06); }
+}
+
+/* PAGE 2 */
 .page2 {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
-  column-gap: 120px;
+  column-gap: 140px;
   align-items: center;
   padding: 80px;
 }
 
-.photo-wrap {
-  position: relative;
-}
+.photo-wrap { position: relative; }
+.photo { width: 280px; transform: rotate(-4deg); border-radius: 6px; }
+.star { width: 90px; position: absolute; bottom: -30px; right: -30px; }
 
-.photo {
-  width: 280px;
-  transform: rotate(-4deg);
-  border-radius: 6px;
-}
-
-.star {
-  width: 90px;
-  position: absolute;
-  bottom: -30px;
-  right: -30px;
-}
-
-.center-text {
-  text-align: center;
-}
+.center-text { text-align: center; }
 
 .script {
   font-family: 'Allura', cursive;
   color: #9b1c1c;
 }
 
-.center-text h1 {
-  font-size: 50px;
-}
-
-.question {
-  font-size: 28px;
-  font-weight: bold;
-  margin: 26px 0;
-}
+.center-text h1 { font-size: 50px; }
+.question { font-size: 28px; font-weight: bold; margin: 26px 0; }
 
 .buttons {
   display: flex;
@@ -126,12 +103,10 @@ body {
   transition: transform 0.35s ease;
 }
 
-/* ---------- PAGE 3 ---------- */
+/* PAGE 3 */
 .page3 {
-  display: flex;              /* FORCE VISIBILITY */
+  position: relative;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
 }
 
@@ -139,6 +114,18 @@ body {
   font-family: 'Allura', cursive;
   font-size: 64px;
   color: #9b1c1c;
+}
+
+/* CONFETTI */
+.confetti {
+  position: absolute;
+  bottom: -40px;
+  animation: rise linear forwards;
+  pointer-events: none;
+}
+
+@keyframes rise {
+  to { transform: translateY(-120vh); opacity: 0; }
 }
 </style>
 </head>
@@ -150,7 +137,7 @@ body {
   <div class="frame">
     <img src="images/bow-illustration.png" class="bow">
     <img src="images/hi-handsome-text.png" class="title-img">
-    <button class="open-btn" onclick="goTo(2)">OPEN ME FOR A SURPRISE</button>
+    <button class="open-btn" onclick="go(2)">OPEN ME FOR A SURPRISE</button>
   </div>
 </div>
 
@@ -167,7 +154,7 @@ body {
     <div class="script question">Will you be my Valentine?</div>
 
     <div class="buttons">
-      <button class="yes" onclick="goTo(3)">YES</button>
+      <button class="yes" onclick="goFinal()">YES</button>
       <button class="no" id="noBtn">NO</button>
     </div>
   </div>
@@ -177,21 +164,48 @@ body {
 
 <!-- PAGE 3 -->
 <div class="screen page3" id="page3">
-  <h1>Phew!</h1>
-  <p>Knew you’d say yes.<br>(As if NO was ever an option)</p>
+  <div>
+    <h1>Phew!</h1>
+    <p>Knew you’d say yes.<br>(As if NO was ever an option)</p>
+  </div>
 </div>
 
 <script>
-function goTo(page) {
+document.addEventListener("DOMContentLoaded", function () {
+
+window.go = function(n) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('page' + page).classList.add('active');
-}
+  document.getElementById('page' + n).classList.add('active');
+};
+
+window.goFinal = function() {
+  go(3);
+  launchConfetti();
+};
 
 const noBtn = document.getElementById('noBtn');
-noBtn.addEventListener('mouseenter', () => {
-  const x = Math.random() * 140 - 70;
-  const y = Math.random() * 120 - 60;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+if (noBtn) {
+  noBtn.addEventListener('mouseenter', () => {
+    const x = Math.random() * 160 - 80;
+    const y = Math.random() * 120 - 60;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+}
+
+function launchConfetti() {
+  const container = document.getElementById('page3');
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement('img');
+    c.src = "images/heart-confetti.png";
+    c.className = "confetti";
+    c.style.width = (Math.random() * 40 + 20) + "px";
+    c.style.left = Math.random() * 100 + "%";
+    c.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    container.appendChild(c);
+    setTimeout(() => c.remove(), 5000);
+  }
+}
+
 });
 </script>
 
