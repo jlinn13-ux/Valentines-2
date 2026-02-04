@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Be My Valentine 💘</title>
 
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   height: 100vh;
-  background: url("images/bg-texture.jpg") center/cover no-repeat;
+  background: url("images/bg-texture.jpg") repeat;
   font-family: 'Libre Baskerville', serif;
-  overflow: hidden;
+  color: #1e1e1e;
 }
 
-/* SCREENS */
 .screen {
   display: none;
-  width: 100vw;
   height: 100vh;
+  width: 100%;
 }
 
 .screen.active {
@@ -32,100 +34,179 @@ body {
   justify-content: center;
 }
 
-/* PAGE 1 */
-.frame {
-  width: 650px;
-  height: 450px;
-  background: url("images/scalloped-frame.png") center/contain no-repeat;
+/* ---------- PAGE 1 ---------- */
+
+.page1-container {
+  position: relative;
+  width: 720px;
+  height: 520px;
+}
+
+.scallop {
+  position: absolute;
+  inset: 0;
+  background: url("images/scallopped-frame.png") no-repeat center / contain;
+}
+
+.page1-content {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.bow { width: 120px; margin-bottom: 10px; }
-.title-img { width: 300px; margin-bottom: 30px; }
+.page1-content img.bow {
+  width: 120px;
+  margin-bottom: 10px;
+}
 
-.open-btn {
+.page1-content h1 {
+  font-family: 'Allura', cursive;
+  font-size: 56px;
+  color: #9b1c1c;
+  margin: 10px 0 30px;
+}
+
+.cta {
   background: white;
+  color: #9b1c1c;
   border: none;
-  padding: 14px 46px;
+  padding: 18px 52px;
   border-radius: 40px;
+  font-size: 14px;
+  letter-spacing: 1px;
   cursor: pointer;
-  animation: pulse 1.6s infinite;
+  animation: pulse 1.8s infinite;
 }
 
 @keyframes pulse {
+  0% { transform: scale(1); }
   50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
 }
 
-/* PAGE 2 */
+/* ---------- PAGE 2 ---------- */
+
 .page2 {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  column-gap: 140px;
-  align-items: center;
-  padding: 80px;
-}
-
-.photo-wrap { position: relative; }
-.photo { width: 280px; transform: rotate(-4deg); border-radius: 6px; }
-.star { width: 90px; position: absolute; bottom: -30px; right: -30px; }
-
-.center-text { text-align: center; }
-
-.script {
-  font-family: 'Allura', cursive;
-  color: #9b1c1c;
-}
-
-.center-text h1 { font-size: 50px; }
-.question { font-size: 28px; font-weight: bold; margin: 26px 0; }
-
-.buttons {
-  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
+  width: 1200px;
+  align-items: center;
+}
+
+.left-stack {
+  position: relative;
+}
+
+.left-stack img {
+  position: absolute;
+}
+
+.left-stack img.paper {
+  width: 380px;
+}
+
+.left-stack img.polaroid {
+  width: 320px;
+  transform: rotate(-5deg);
+  top: 40px;
+  left: 40px;
+}
+
+.left-stack img.photo {
+  width: 260px;
+  top: 80px;
+  left: 70px;
+  transform: rotate(-5deg);
+}
+
+.left-stack img.star {
+  width: 70px;
+  bottom: -20px;
+  right: 0;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-text h2 {
+  font-family: 'Allura', cursive;
+  font-size: 50px;
+  color: #9b1c1c;
+  margin-bottom: 20px;
+}
+
+.center-text p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.center-text .question {
+  font-family: 'Allura', cursive;
+  font-size: 28px;
+  font-weight: bold;
+  color: #9b1c1c;
+  margin: 24px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 30px;
   justify-content: center;
+}
+
+.actions button {
+  padding: 14px 42px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .yes {
   background: white;
-  border: none;
-  padding: 14px 46px;
-  border-radius: 40px;
-  cursor: pointer;
 }
 
 .no {
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.35s ease;
+  background: transparent;
+  position: relative;
 }
 
-/* PAGE 3 */
+/* ---------- PAGE 3 ---------- */
+
 .page3 {
-  position: relative;
-  flex-direction: column;
   text-align: center;
 }
 
 .page3 h1 {
   font-family: 'Allura', cursive;
-  font-size: 64px;
+  font-size: 70px;
   color: #9b1c1c;
 }
 
-/* CONFETTI */
+.page3 p {
+  font-size: 16px;
+}
+
+/* ---------- CONFETTI ---------- */
+
 .confetti {
-  position: absolute;
-  bottom: -40px;
+  position: fixed;
+  bottom: -80px;
+  width: 40px;
   animation: rise linear forwards;
   pointer-events: none;
 }
 
 @keyframes rise {
-  to { transform: translateY(-120vh); opacity: 0; }
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
@@ -134,79 +215,81 @@ body {
 
 <!-- PAGE 1 -->
 <div class="screen active" id="page1">
-  <div class="frame">
-    <img src="images/bow-illustration.png" class="bow">
-    <img src="images/hi-handsome-text.png" class="title-img">
-    <button class="open-btn" onclick="go(2)">OPEN ME FOR A SURPRISE</button>
+  <div class="page1-container">
+    <div class="scallop"></div>
+    <div class="page1-content">
+      <img src="images/bow-illustration.png" class="bow">
+      <h1>Hi Handsome</h1>
+      <button class="cta" onclick="goToPage(2)">OPEN ME FOR A SURPRISE!!</button>
+    </div>
   </div>
 </div>
 
 <!-- PAGE 2 -->
-<div class="screen page2" id="page2">
-  <div class="photo-wrap">
-    <img src="images/our-image.jpeg" class="photo">
-    <img src="images/red-star.png" class="star">
-  </div>
+<div class="screen" id="page2">
+  <div class="page2">
+    <div class="left-stack">
+      <img src="images/paper-cut-kisses.png" class="paper">
+      <img src="images/polaroid-frame.jpg" class="polaroid">
+      <img src="images/our-image.jpeg" class="photo">
+      <img src="images/red-star.png" class="star">
+    </div>
 
-  <div class="center-text">
-    <h1 class="script">For our 3rd Valentine</h1>
-    <p>I thought I’d finally ask you out<br>(in a better way than you, obviously).</p>
-    <div class="script question">Will you be my Valentine?</div>
+    <div class="center-text">
+      <h2>For our 3rd Valentine</h2>
+      <p>
+        I thought I’d finally ask you out<br>
+        (in a better way than you, obviously).
+      </p>
+      <div class="question">Will you be my Valentine?</div>
+      <div class="actions">
+        <button class="yes" onclick="yesClick()">YES</button>
+        <button class="no" id="noBtn">NO</button>
+      </div>
+    </div>
 
-    <div class="buttons">
-      <button class="yes" onclick="goFinal()">YES</button>
-      <button class="no" id="noBtn">NO</button>
+    <div>
+      <img src="images/hearts-hugging.png" width="260">
     </div>
   </div>
-
-  <img src="images/hearts-hugging.png" style="width:220px;">
 </div>
 
 <!-- PAGE 3 -->
-<div class="screen page3" id="page3">
-  <div>
+<div class="screen" id="page3">
+  <div class="page3">
     <h1>Phew!</h1>
-    <p>Knew you’d say yes.<br>(As if NO was ever an option)</p>
+    <p>
+      Knew you’d say yes.<br>
+      (As if NO was ever an option)
+    </p>
   </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-window.go = function(n) {
+function goToPage(n) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('page' + n).classList.add('active');
-};
-
-window.goFinal = function() {
-  go(3);
-  launchConfetti();
-};
-
-const noBtn = document.getElementById('noBtn');
-if (noBtn) {
-  noBtn.addEventListener('mouseenter', () => {
-    const x = Math.random() * 160 - 80;
-    const y = Math.random() * 120 - 60;
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
-  });
 }
 
-function launchConfetti() {
-  const container = document.getElementById('page3');
-  for (let i = 0; i < 30; i++) {
-    const c = document.createElement('img');
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseenter', () => {
+  const x = Math.random() * 120 - 60;
+  const y = Math.random() * 80 - 40;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+function yesClick() {
+  goToPage(3);
+  for (let i = 0; i < 22; i++) {
+    const c = document.createElement("img");
     c.src = "images/heart-confetti.png";
     c.className = "confetti";
-    c.style.width = (Math.random() * 40 + 20) + "px";
-    c.style.left = Math.random() * 100 + "%";
-    c.style.animationDuration = (Math.random() * 2 + 3) + "s";
-    container.appendChild(c);
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = 3 + Math.random() * 2 + "s";
+    document.body.appendChild(c);
     setTimeout(() => c.remove(), 5000);
   }
 }
-
-});
 </script>
 
 </body>
