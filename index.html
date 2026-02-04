@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Be My Valentine 💘</title>
 
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -28,6 +29,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .screen.active {
   display: flex;
 }
@@ -38,9 +40,8 @@ body {
 }
 
 .frame {
-  position: relative;
-  width: 620px;
-  height: 420px;
+  width: 650px;
+  height: 450px;
   background: url("images/scalloped-frame.png") center/contain no-repeat;
   display: flex;
   flex-direction: column;
@@ -61,7 +62,7 @@ body {
 .open-btn {
   background: white;
   border: none;
-  padding: 14px 42px;
+  padding: 14px 46px;
   border-radius: 40px;
   font-family: 'Libre Baskerville', serif;
   cursor: pointer;
@@ -76,7 +77,7 @@ body {
 
 /* ---------- PAGE 2 ---------- */
 .page2 {
-  padding: 80px;
+  padding: 60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
@@ -87,8 +88,8 @@ body {
   justify-self: center;
 }
 
-.photo-wrap img.photo {
-  width: 260px;
+.photo {
+  width: 280px;
   border-radius: 6px;
   transform: rotate(-4deg);
 }
@@ -122,13 +123,13 @@ body {
 .question {
   font-size: 28px;
   font-weight: bold;
-  margin: 24px 0;
+  margin: 26px 0;
 }
 
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 40px;
 }
 
 .yes {
@@ -143,13 +144,18 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
-  position: relative;
+  font-size: 16px;
 }
 
 /* ---------- PAGE 3 ---------- */
 .page3 {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .page3 h1 {
@@ -161,6 +167,8 @@ body {
 .confetti {
   position: fixed;
   bottom: -40px;
+  z-index: 1;
+  pointer-events: none;
   animation: rise linear forwards;
 }
 
@@ -212,7 +220,7 @@ body {
 <script>
 function goToPage(n) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('page'+n).classList.add('active');
+  document.getElementById('page' + n).classList.add('active');
 }
 
 const noBtn = document.getElementById('noBtn');
@@ -223,7 +231,7 @@ noBtn.addEventListener('mouseenter', () => {
 });
 
 function launchConfetti() {
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 30; i++) {
     const c = document.createElement('img');
     c.src = "images/heart-confetti.png";
     c.className = "confetti";
@@ -239,4 +247,3 @@ function launchConfetti() {
 
 </body>
 </html>
-
