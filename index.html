@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Be My Valentine 💘</title>
 
-<!-- Google Fonts -->
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -29,16 +29,11 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .screen.active {
   display: flex;
 }
 
 /* ---------- PAGE 1 ---------- */
-.page1 {
-  position: relative;
-}
-
 .frame {
   width: 650px;
   height: 450px;
@@ -64,22 +59,22 @@ body {
   border: none;
   padding: 14px 46px;
   border-radius: 40px;
-  font-family: 'Libre Baskerville', serif;
   cursor: pointer;
   animation: pulse 1.6s infinite;
 }
 
 @keyframes pulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.07); }
+  50% { transform: scale(1.06); }
   100% { transform: scale(1); }
 }
 
 /* ---------- PAGE 2 ---------- */
 .page2 {
-  padding: 60px;
+  padding: 80px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  column-gap: 140px;   /* FIXES CROWDING */
   align-items: center;
 }
 
@@ -145,14 +140,12 @@ body {
   border: none;
   cursor: pointer;
   font-size: 16px;
+  transition: transform 0.35s ease-in-out; /* SMOOTH MOVE */
 }
 
 /* ---------- PAGE 3 ---------- */
 .page3 {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -164,17 +157,19 @@ body {
   color: #9b1c1c;
 }
 
+/* ---------- CONFETTI ---------- */
 .confetti {
   position: fixed;
-  bottom: -40px;
+  bottom: -50px;
   z-index: 1;
   pointer-events: none;
+  will-change: transform;
   animation: rise linear forwards;
 }
 
 @keyframes rise {
   from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-110vh); opacity: 0; }
+  to { transform: translateY(-120vh); opacity: 0; }
 }
 </style>
 </head>
@@ -182,7 +177,7 @@ body {
 <body>
 
 <!-- PAGE 1 -->
-<div class="screen active page1" id="page1">
+<div class="screen active" id="page1">
   <div class="frame">
     <img src="images/bow-illustration.png" class="bow">
     <img src="images/hi-handsome-text.png" class="title-img">
@@ -203,7 +198,7 @@ body {
     <div class="script question">Will you be my Valentine?</div>
 
     <div class="buttons">
-      <button class="yes" onclick="goToPage(3); launchConfetti()">YES</button>
+      <button class="yes" onclick="goToFinal()">YES</button>
       <button class="no" id="noBtn">NO</button>
     </div>
   </div>
@@ -223,9 +218,14 @@ function goToPage(n) {
   document.getElementById('page' + n).classList.add('active');
 }
 
+function goToFinal() {
+  goToPage(3);
+  setTimeout(launchConfetti, 150); // PREVENTS PAGE 3 BUG
+}
+
 const noBtn = document.getElementById('noBtn');
 noBtn.addEventListener('mouseenter', () => {
-  const x = Math.random() * 140 - 70;
+  const x = Math.random() * 160 - 80;
   const y = Math.random() * 120 - 60;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
 });
@@ -235,8 +235,7 @@ function launchConfetti() {
     const c = document.createElement('img');
     c.src = "images/heart-confetti.png";
     c.className = "confetti";
-    const size = Math.random() * 40 + 20;
-    c.style.width = size + "px";
+    c.style.width = (Math.random() * 40 + 20) + "px";
     c.style.left = Math.random() * 100 + "vw";
     c.style.animationDuration = (Math.random() * 2 + 3) + "s";
     document.body.appendChild(c);
