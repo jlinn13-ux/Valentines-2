@@ -4,15 +4,12 @@
 <meta charset="UTF-8" />
 <title>Be My Valentine 💘</title>
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -34,7 +31,7 @@ body {
   justify-content: center;
 }
 
-/* ---------- PAGE 1 ---------- */
+/* ---------- PAGE 1 (UNCHANGED) ---------- */
 
 .page1-container {
   position: relative;
@@ -82,53 +79,38 @@ body {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
   50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
 }
 
-/* ---------- PAGE 2 ---------- */
+/* ---------- PAGE 2 (UPDATED) ---------- */
 
 .page2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
   width: 1200px;
   align-items: center;
+  justify-items: center;
 }
 
+/* LEFT IMAGE */
 .left-stack {
   position: relative;
 }
 
-.left-stack img {
-  position: absolute;
-}
-
-.left-stack img.paper {
-  width: 380px;
-}
-
-.left-stack img.polaroid {
-  width: 320px;
-  transform: rotate(-5deg);
-  top: 40px;
-  left: 40px;
-}
-
 .left-stack img.photo {
-  width: 260px;
-  top: 80px;
-  left: 70px;
-  transform: rotate(-5deg);
+  width: 320px;
+  transform: rotate(-4deg);
+  border-radius: 8px;
 }
 
 .left-stack img.star {
   width: 70px;
+  position: absolute;
   bottom: -20px;
-  right: 0;
+  right: -20px;
 }
 
+/* CENTER TEXT */
 .center-text {
   text-align: center;
 }
@@ -167,16 +149,10 @@ body {
   cursor: pointer;
 }
 
-.yes {
-  background: white;
-}
+.yes { background: white; }
+.no { background: transparent; }
 
-.no {
-  background: transparent;
-  position: relative;
-}
-
-/* ---------- PAGE 3 ---------- */
+/* ---------- PAGE 3 (UNCHANGED) ---------- */
 
 .page3 {
   text-align: center;
@@ -188,9 +164,7 @@ body {
   color: #9b1c1c;
 }
 
-.page3 p {
-  font-size: 16px;
-}
+.page3 p { font-size: 16px; }
 
 /* ---------- CONFETTI ---------- */
 
@@ -213,7 +187,7 @@ body {
 
 <body>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1 (UNCHANGED) -->
 <div class="screen active" id="page1">
   <div class="page1-container">
     <div class="scallop"></div>
@@ -225,12 +199,11 @@ body {
   </div>
 </div>
 
-<!-- PAGE 2 -->
+<!-- PAGE 2 (UPDATED) -->
 <div class="screen" id="page2">
   <div class="page2">
+
     <div class="left-stack">
-      <img src="images/paper-cut-kisses.png" class="paper">
-      <img src="images/polaroid-frame.jpg" class="polaroid">
       <img src="images/our-image.jpeg" class="photo">
       <img src="images/red-star.png" class="star">
     </div>
@@ -251,10 +224,11 @@ body {
     <div>
       <img src="images/hearts-hugging.png" width="260">
     </div>
+
   </div>
 </div>
 
-<!-- PAGE 3 -->
+<!-- PAGE 3 (UNCHANGED) -->
 <div class="screen" id="page3">
   <div class="page3">
     <h1>Phew!</h1>
