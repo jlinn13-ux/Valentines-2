@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------- BASE ---------- */
     body {
       margin: 0;
       height: 100vh;
@@ -20,8 +19,6 @@
       align-items: center;
       font-family: 'Libre Baskerville', serif;
       color: #1e1e1e;
-      text-align: center;
-      overflow: hidden;
     }
 
     .screen {
@@ -38,17 +35,18 @@
 
     .card {
       background: white;
-      padding: 48px 52px;
-      border-radius: 28px;
+      padding: 60px;
+      border-radius: 30px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-      width: 420px;
+      text-align: center;
+      width: 520px;
       position: relative;
     }
 
     h1 {
       font-family: 'Allura', cursive;
-      font-size: 48px;
-      margin-bottom: 20px;
+      font-size: 56px;
+      margin-bottom: 24px;
       color: #8b1d1d;
     }
 
@@ -58,64 +56,62 @@
       margin-bottom: 28px;
     }
 
-    /* ---------- BUTTONS ---------- */
+    /* Buttons */
     button {
       border: none;
+      border-radius: 40px;
+      padding: 16px 42px;
+      font-size: 16px;
       cursor: pointer;
       font-family: 'Libre Baskerville', serif;
-      transition: transform 0.25s ease;
+      transition: all 0.25s ease;
     }
 
-    /* CTA Pulse */
-    @keyframes softPulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(0,0,0,0.15);
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(0,0,0,0.15);
-      }
-    }
-
-    .cta {
-      padding: 18px 48px;
-      border-radius: 999px;
+    .primary {
       background: #1e1e1e;
       color: white;
-      font-size: 16px;
-      animation: softPulse 2.6s ease-in-out infinite;
     }
 
-    .cta:hover {
-      animation-play-state: paused;
-      transform: scale(1.07);
+    .primary:hover {
+      transform: scale(1.05);
     }
 
-    /* YES / NO */
+    /* Pulsing animation for Page 1 button */
+    .pulse {
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    /* Page 2 buttons */
+    .button-row {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
     .yes {
-      margin-top: 24px;
+      background: #1e1e1e;
+      color: white;
       padding: 18px 56px;
       font-size: 18px;
-      border-radius: 999px;
-      background: #1e1e1e;
-      color: white;
     }
 
     .no {
       background: transparent;
       color: #1e1e1e;
       font-size: 14px;
-      position: absolute;
-      left: 50%;
-      top: calc(100% - 10px);
-      transform: translateX(-50%);
-      transition: transform 0.6s ease;
-      cursor: default;
+      position: relative;
+    }
+
+    /* Page 3 emphasis */
+    #page3 h1 {
+      letter-spacing: 3px;
     }
   </style>
 </head>
@@ -126,8 +122,9 @@
   <div class="screen active" id="page1">
     <div class="card">
       <h1>Hi Handsome</h1>
-      <p>Open me for a surprise</p>
-      <button class="cta" onclick="goToPage(2)">Open me for a surprise</button>
+      <button class="primary pulse" onclick="goToPage(2)">
+        Open me for a surprise
+      </button>
     </div>
   </div>
 
@@ -135,22 +132,27 @@
   <div class="screen" id="page2">
     <div class="card">
       <h1>For our 3rd Valentine</h1>
+
       <p>
         I thought I’d finally ask you out<br>
         (in a better way than you, obviously).
-        <br><br>
-        Will you be my Valentine?
       </p>
 
-      <button class="yes" onclick="goToPage(3)">Yes</button>
-      <button class="no" id="noBtn">No</button>
+      <h1 style="font-size: 46px; margin-top: 10px;">
+        Will you be my Valentine?
+      </h1>
+
+      <div class="button-row">
+        <button class="yes" onclick="goToPage(3)">Yes</button>
+        <button class="no" id="noBtn">No</button>
+      </div>
     </div>
   </div>
 
   <!-- PAGE 3 -->
   <div class="screen" id="page3">
     <div class="card">
-      <h1>Phew!</h1>
+      <h1>PHEW!</h1>
       <p>
         Knew you’d say yes.<br>
         (As if NO was ever an option)
@@ -169,12 +171,12 @@
     const noBtn = document.getElementById('noBtn');
 
     noBtn.addEventListener('mouseenter', () => {
-      const x = Math.random() * 120 - 60;
-      const y = Math.random() * 80 - 40;
+      const x = Math.random() * 160 - 80;
+      const y = Math.random() * 120 - 60;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
+      noBtn.style.transition = 'transform 0.4s ease';
     });
   </script>
 
 </body>
 </html>
-
