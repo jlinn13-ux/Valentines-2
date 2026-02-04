@@ -1,141 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Be My Valentine 💘</title>
-  
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-  
-    <style>
-      
-      body {
-        margin: 0;
-        height: 100vh;
-        background: #f7f5f2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Libre Baskerville', serif;
-        color: #1e1e1e;
-        text-align: center;
-      }
-  
-      .card {
-        background: white;
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        width: 360px;
-      }
-  
-      h1 {
-        font-family: 'Playfair Display SC', serif;
-        font-size: 42px;
-        margin-bottom: 20px;
-      }
-  
-      p {
-        font-size: 18px;
-        line-height: 1.6;
-      }
-  
-      button {
-        margin-top: 20px;
-        padding: 14px 28px;
-        border-radius: 30px;
-        border: none;
-        background: #1e1e1e;
-        color: white;
-        font-family: 'Libre Baskerville', serif;
-        font-size: 15px;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-      }
-  
-      button:hover {
-        transform: scale(1.05);
-      }
-      .screen {
-  display: none;
-}
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💘</title>
 
-.screen.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
-.yes {
-  margin-top: 24px;
-  padding: 18px 56px;
-  font-size: 18px;
-  border-radius: 40px;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.no {
-  background: transparent;
-  color: #1e1e1e;
-  font-size: 14px;
-  position: absolute;
-  margin-top: 28px;
-}
-    </style>
-  </head>  
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #f7f5f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Libre Baskerville', serif;
+      color: #1e1e1e;
+      overflow: hidden;
+    }
 
-  <body>
+    /* SCREENS */
+    .screen {
+      display: none;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+    }
 
-    <!-- PAGE 1 -->
-    <div class="screen active" id="page1">
-      <div class="card">
-        <h1>Hi Handsome 💌</h1>
-        <p>Open me for a surprise 👀</p>
-        <button onclick="goToPage(2)">Open</button>
-      </div>
+    .screen.active {
+      display: flex;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      padding: 48px;
+      border-radius: 28px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+      width: 420px;
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HEADINGS */
+    h1 {
+      font-family: 'Allura', cursive;
+      font-size: 56px;
+      margin-bottom: 20px;
+      color: #8b1d1d;
+    }
+
+    /* BODY TEXT */
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* BUTTONS */
+    button {
+      padding: 16px 36px;
+      border-radius: 40px;
+      border: none;
+      background: #1e1e1e;
+      color: white;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    button:hover {
+      transform: scale(1.06);
+    }
+
+    /* YES / NO */
+    .yes {
+      margin-right: 20px;
+      padding: 18px 56px;
+      font-size: 17px;
+    }
+
+    .no {
+      background: transparent;
+      color: #1e1e1e;
+      font-size: 14px;
+      position: absolute;
+      bottom: 32px;
+      right: 32px;
+      transition: transform 0.6s ease;
+      cursor: default;
+    }
+
+    /* PAGE 3 SPECIAL */
+    .phew {
+      font-size: 72px;
+      animation: popIn 0.6s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="screen active" id="page1">
+    <div class="card">
+      <h1>Hi Handsome</h1>
+      <p>Open me for a surprise 👀</p>
+      <button onclick="goToPage(2)">Open</button>
     </div>
-  
-    <!-- PAGE 2 -->
-    <div class="screen" id="page2">
-      <div class="card">
-        <h1>For our 3rd Valentine</h1>
-        <p>
-          I thought I’d finally ask you out<br>
-          (in a better way than you, obviously).
-          <br><br>
-          Will you be my Valentine?
-        </p>
-  
-        <button class="yes" onclick="goToPage(3)">Yes</button>
-        <button class="no" id="noBtn">No</button>
-      </div>
-    </div>
-  
-    <!-- PAGE 3 -->
-    <div class="screen" id="page3">
-      <div class="card">
-        <h1>Phew!</h1>
-        <p>Knew you’d say yes.<br>(As if NO was ever an option)</p>
-      </div>
-    </div>
-  
-    <script>
-      function goToPage(pageNumber) {
-        document.querySelectorAll('.screen').forEach(screen => {
-          screen.classList.remove('active');
-        });
-        document.getElementById('page' + pageNumber).classList.add('active');
-      }
-  
-      const noBtn = document.getElementById('noBtn');
-  
-      noBtn.addEventListener('mouseenter', () => {
-        const x = Math.random() * 300 - 150;
-        const y = Math.random() * 200 - 100;
-        noBtn.style.transform = `translate(${x}px, ${y}px)`;
-      });
-    </script>
-  
-  </body>  
-</html>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="screen" id="page2">
+    <div class="card">
+      <h1>For our 3rd Valentine</h1>
+      <p>
+        I thought I’d finally ask you out<br>
+        (in a better way than you, obviously).
+        <br><br>
+        <strong>Will you be my V
