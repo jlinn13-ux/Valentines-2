@@ -116,7 +116,7 @@ body {
   color: #9b1c1c;
 }
 
-/* CONFETTI (INSIDE PAGE 3) */
+/* CONFETTI */
 .confetti {
   position: absolute;
   bottom: -40px;
@@ -179,7 +179,8 @@ function goFinal() {
   launchConfetti();
 }
 
-document.getElementById('noBtn').addEventListener('mouseenter', () => {
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseenter', () => {
   const x = Math.random() * 160 - 80;
   const y = Math.random() * 120 - 60;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
