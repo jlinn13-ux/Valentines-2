@@ -10,75 +10,90 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       height: 100vh;
       background: #f7f5f2;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       font-family: 'Libre Baskerville', serif;
       color: #1e1e1e;
     }
 
+    /* Screens */
     .screen {
       display: none;
       width: 100%;
       height: 100%;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     .screen.active {
       display: flex;
     }
 
+    /* Card */
     .card {
       background: white;
       padding: 60px;
-      border-radius: 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      border-radius: 40px;
+      width: 720px;
       text-align: center;
-      width: 520px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
       position: relative;
     }
 
-    h1 {
+    /* Typography */
+    .script {
       font-family: 'Allura', cursive;
-      font-size: 56px;
+      color: #8c1d18;
+    }
+
+    h1 {
+      font-size: 50px;
       margin-bottom: 24px;
-      color: #8b1d1d;
+    }
+
+    .question {
+      font-size: 28px;
+      margin-top: 30px;
     }
 
     p {
       font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 28px;
+      line-height: 1.6;
+      margin: 0;
     }
 
     /* Buttons */
-    button {
+    .btn {
       border: none;
-      border-radius: 40px;
-      padding: 16px 42px;
-      font-size: 16px;
       cursor: pointer;
+      border-radius: 40px;
+      padding: 18px 56px;
       font-family: 'Libre Baskerville', serif;
-      transition: all 0.25s ease;
+      transition: all 0.3s ease;
     }
 
-    .primary {
+    .btn-primary {
       background: #1e1e1e;
       color: white;
+      font-size: 18px;
     }
 
-    .primary:hover {
+    .btn-primary:hover {
       transform: scale(1.05);
     }
 
-    /* Pulsing animation for Page 1 button */
+    /* Pulsing animation */
     .pulse {
-      animation: pulse 1.8s infinite;
+      animation: pulse 1.6s infinite;
     }
 
     @keyframes pulse {
@@ -88,30 +103,58 @@
     }
 
     /* Page 2 buttons */
-    .button-row {
+    .actions {
+      margin-top: 50px;
       display: flex;
-      gap: 30px;
+      gap: 60px;
       justify-content: center;
-      margin-top: 20px;
+      position: relative;
     }
 
     .yes {
-      background: #1e1e1e;
-      color: white;
-      padding: 18px 56px;
-      font-size: 18px;
+      font-size: 20px;
     }
 
     .no {
       background: transparent;
-      color: #1e1e1e;
-      font-size: 14px;
+      font-size: 16px;
       position: relative;
     }
 
-    /* Page 3 emphasis */
-    #page3 h1 {
-      letter-spacing: 3px;
+    /* Page 3 animation */
+    .pop {
+      animation: pop 0.6s ease-out forwards;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      top: -50px;
+      width: 24px;
+      height: 24px;
+      background-image: url("images/heart-confetti.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -121,8 +164,8 @@
   <!-- PAGE 1 -->
   <div class="screen active" id="page1">
     <div class="card">
-      <h1>Hi Handsome</h1>
-      <button class="primary pulse" onclick="goToPage(2)">
+      <h1 class="script">Hi Handsome</h1>
+      <button class="btn btn-primary pulse" onclick="goToPage(2)">
         Open me for a surprise
       </button>
     </div>
@@ -131,19 +174,19 @@
   <!-- PAGE 2 -->
   <div class="screen" id="page2">
     <div class="card">
-      <h1>For our 3rd Valentine</h1>
+      <h1 class="script">For our 3rd Valentine</h1>
 
       <p>
         I thought I’d finally ask you out<br>
         (in a better way than you, obviously).
       </p>
 
-      <h1 style="font-size: 46px; margin-top: 10px;">
+      <div class="script question">
         Will you be my Valentine?
-      </h1>
+      </div>
 
-      <div class="button-row">
-        <button class="yes" onclick="goToPage(3)">Yes</button>
+      <div class="actions">
+        <button class="btn btn-primary yes" onclick="yesClicked()">Yes</button>
         <button class="no" id="noBtn">No</button>
       </div>
     </div>
@@ -151,8 +194,8 @@
 
   <!-- PAGE 3 -->
   <div class="screen" id="page3">
-    <div class="card">
-      <h1>PHEW!</h1>
+    <div class="card pop">
+      <h1 class="script">Phew!</h1>
       <p>
         Knew you’d say yes.<br>
         (As if NO was ever an option)
@@ -161,22 +204,39 @@
   </div>
 
   <script>
-    function goToPage(pageNumber) {
-      document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-      });
-      document.getElementById('page' + pageNumber).classList.add('active');
+    function goToPage(page) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('page' + page).classList.add('active');
     }
 
+    /* No button smooth dodge */
     const noBtn = document.getElementById('noBtn');
-
     noBtn.addEventListener('mouseenter', () => {
-      const x = Math.random() * 160 - 80;
-      const y = Math.random() * 120 - 60;
+      const x = Math.random() * 140 - 70;
+      const y = Math.random() * 60 - 30;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
-      noBtn.style.transition = 'transform 0.4s ease';
     });
+
+    /* Yes click */
+    function yesClicked() {
+      goToPage(3);
+      launchConfetti();
+    }
+
+    /* Confetti */
+    function launchConfetti() {
+      for (let i = 0; i < 18; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
   </script>
 
 </body>
 </html>
+
