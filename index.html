@@ -10,89 +10,100 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    /* ---------- BASE ---------- */
     body {
       margin: 0;
       height: 100vh;
       background: #f7f5f2;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       font-family: 'Libre Baskerville', serif;
       color: #1e1e1e;
+      text-align: center;
       overflow: hidden;
     }
 
-    /* SCREENS */
     .screen {
       display: none;
       width: 100%;
       height: 100%;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
     .screen.active {
       display: flex;
     }
 
-    /* CARD */
     .card {
       background: white;
-      padding: 48px;
+      padding: 48px 52px;
       border-radius: 28px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
       width: 420px;
-      text-align: center;
-      animation: fadeIn 0.6s ease;
       position: relative;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* HEADINGS */
     h1 {
       font-family: 'Allura', cursive;
-      font-size: 56px;
+      font-size: 48px;
       margin-bottom: 20px;
       color: #8b1d1d;
     }
 
-    /* BODY TEXT */
     p {
       font-size: 18px;
       line-height: 1.7;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
-    /* BUTTONS */
+    /* ---------- BUTTONS ---------- */
     button {
-      padding: 16px 36px;
-      border-radius: 40px;
       border: none;
-      background: #1e1e1e;
-      color: white;
-      font-family: 'Libre Baskerville', serif;
-      font-size: 15px;
       cursor: pointer;
+      font-family: 'Libre Baskerville', serif;
       transition: transform 0.25s ease;
     }
 
-    button:hover {
-      transform: scale(1.06);
+    /* CTA Pulse */
+    @keyframes softPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0,0,0,0.15);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0,0,0,0.15);
+      }
+    }
+
+    .cta {
+      padding: 18px 48px;
+      border-radius: 999px;
+      background: #1e1e1e;
+      color: white;
+      font-size: 16px;
+      animation: softPulse 2.6s ease-in-out infinite;
+    }
+
+    .cta:hover {
+      animation-play-state: paused;
+      transform: scale(1.07);
     }
 
     /* YES / NO */
     .yes {
-      margin-right: 20px;
+      margin-top: 24px;
       padding: 18px 56px;
-      font-size: 17px;
+      font-size: 18px;
+      border-radius: 999px;
+      background: #1e1e1e;
+      color: white;
     }
 
     .no {
@@ -100,22 +111,11 @@
       color: #1e1e1e;
       font-size: 14px;
       position: absolute;
-      bottom: 32px;
-      right: 32px;
+      left: 50%;
+      top: calc(100% - 10px);
+      transform: translateX(-50%);
       transition: transform 0.6s ease;
       cursor: default;
-    }
-
-    /* PAGE 3 SPECIAL */
-    .phew {
-      font-size: 72px;
-      animation: popIn 0.6s ease;
-    }
-
-    @keyframes popIn {
-      0% { transform: scale(0.6); opacity: 0; }
-      70% { transform: scale(1.1); }
-      100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -126,8 +126,8 @@
   <div class="screen active" id="page1">
     <div class="card">
       <h1>Hi Handsome</h1>
-      <p>Open me for a surprise 👀</p>
-      <button onclick="goToPage(2)">Open</button>
+      <p>Open me for a surprise</p>
+      <button class="cta" onclick="goToPage(2)">Open me for a surprise</button>
     </div>
   </div>
 
@@ -139,4 +139,42 @@
         I thought I’d finally ask you out<br>
         (in a better way than you, obviously).
         <br><br>
-        <strong>Will you be my V
+        Will you be my Valentine?
+      </p>
+
+      <button class="yes" onclick="goToPage(3)">Yes</button>
+      <button class="no" id="noBtn">No</button>
+    </div>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div class="screen" id="page3">
+    <div class="card">
+      <h1>Phew!</h1>
+      <p>
+        Knew you’d say yes.<br>
+        (As if NO was ever an option)
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function goToPage(pageNumber) {
+      document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+      });
+      document.getElementById('page' + pageNumber).classList.add('active');
+    }
+
+    const noBtn = document.getElementById('noBtn');
+
+    noBtn.addEventListener('mouseenter', () => {
+      const x = Math.random() * 120 - 60;
+      const y = Math.random() * 80 - 40;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+
+</body>
+</html>
+
